@@ -4,6 +4,7 @@ const express = require('express');
 const ejs = require('ejs');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const encrypt = require('mongoose-encryption');
 
 const app = express();
 mongoose.connect("mongodb://localhost:27017/userDB", {useNewUrlParser: true});
@@ -17,6 +18,10 @@ const userSchema = new mongoose.Schema({
   password: String
 });
 
+const secret = "IknowWhatYouAreThinkingYesThisIsMyLongStringForEncryptionHAHAHA";
+userSchema.plugin(encrypt, { secret: secret, encryptedFields: ["password"]});
+
+//create model only after applying plugin
 const User = mongoose.model("User", userSchema);
 
 app.get("/", function(req, res) {
@@ -72,7 +77,9 @@ app.post("/login", function(req, res) {
   );
 });
 
-
+//NOTE:
+// During save(), documents are encrypted and then signed. During find(), documents
+// are authenticated and then decrypted
 
 
 
