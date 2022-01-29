@@ -10,7 +10,24 @@ body {
 
 .secret-text {
   text-align: center;
-  font-size: 2rem;
+  font-size: 1.6rem;
   color: #fff;
   background-color: #000;
+  border-radius: 16px;
+  padding: 3px;
+}
+
+.secret-card {
+  text-align: center;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e5eaf4;
+  border-radius: 16px;
+}
+
+.secret-card-image {
+  width: 87px;
+  height: 90px;
+  margin-bottom: 10px;
 }
